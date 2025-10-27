@@ -13,6 +13,17 @@ a.sum() 返回各个元素的和
 id(a) 取内存地址
 b = a.numpy() 转为 numpy 数组
 c = torch.tensor(b) 再转回 torch 数组
+pandas 的操作
+pd.read_csv('file.csv') 读取 csv 文件为 DataFrame
+data.iloc[行, 列] 通过行列索引访问 DataFrame 元素
+data.loc[行标签, 列标签] 通过行列标签访问 DataFrame 元素
+inputs.fillna() 填充缺失值
+inputs.mean() 计算均值 (numeric_only = 1 时只计算数值列)
+pd.get_dummies(data, columns = [...]) 独热编码
+torch.tensor(inputs.values) 将 DataFrame 转为张量
+torch.sum(a, dim = 0) 按行求和，结果是每列的和
+torch.sum(a, dim = 1) 按列求和，结果是每行的和
+bb.view(-1, num_features) 将 bb 重塑为行数不变，列数为 num_features 的张量
 ```
 
 ### 概念总结
