@@ -10,7 +10,6 @@
 
 import torch
 import torchvision
-from d2l import torch as d2l
 from torch.utils import data
 from torchvision import transforms
 from d2l.torch import Accumulator
@@ -106,7 +105,7 @@ def train_ch3(net, train_iter, test_iter, loss, num_epochs, updater):
 
 
 # 定义 softmax 损失函数
-softmax_loss = torch.nn.CrossEntropyLoss() # 交叉熵损失函数
+softmax_loss = torch.nn.CrossEntropyLoss(reduction='none') # 交叉熵损失函数
 
 # 定义优化算法, 使用小批量随机梯度下降
 lr = 0.1 # 学习率
@@ -121,3 +120,8 @@ def train_softmax_model(net, train_iter, test_iter, loss, trainer, num_epochs):
 batch_size = 256
 train_iter, test_iter = load_data_fashion_mnist(batch_size)
 train_softmax_model(softmax_net, train_iter, test_iter, softmax_loss, softmax_trainer, num_epochs)
+
+# 在非 Jupyter 环境下，需要显示并保持图形窗口
+import matplotlib.pyplot as plt
+plt.ioff()  # 关闭交互模式
+plt.show()  # 显示所有图形

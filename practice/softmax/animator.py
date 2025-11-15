@@ -1,5 +1,12 @@
 import d2l.torch as d2l
-from IPython import display
+try:
+    from IPython import display
+    IN_NOTEBOOK = True
+except:
+    IN_NOTEBOOK = False
+
+import matplotlib.pyplot as plt
+
 # 定义一个在动画中绘制数据的实用程序类
 class Animator:
     def __init__(self, xlabel=None, ylabel=None, legend=None, xlim=None,
@@ -8,7 +15,10 @@ class Animator:
                  figsize=(3.5, 2.5)):
         if legend is None:
             legend = []
-        d2l.use_svg_display()
+        if IN_NOTEBOOK:
+            d2l.use_svg_display()
+        else:
+            plt.ion()  # 开启交互模式
         self.fig, self.axes = d2l.plt.subplots(nrows, ncols, figsize=figsize)
         if nrows * ncols == 1:
             self.axes = [self.axes, ]
@@ -36,5 +46,8 @@ class Animator:
         for x, y, fmt in zip(self.X, self.Y, self.fmts):
             self.axes[0].plot(x, y, fmt)
         self.config_axes()
-        display.display(self.fig)
-        display.clear_output(wait=True)
+        if IN_NOTEBOOK:
+            display.display(self.fig)
+            display.clear_output(wait=True)
+        else:
+            plt.pause(0.1)  # 暂停以更新图形
