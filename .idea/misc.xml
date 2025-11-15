@@ -6,5 +6,5 @@
   <component name="EditMigrationStateService">
     <option name="migrationStatus" value="COMPLETED" />
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="D:\software\miniconda\envs\torch-clean" project-jdk-type="Python SDK" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="torch-py311" project-jdk-type="Python SDK" />
 </project>
